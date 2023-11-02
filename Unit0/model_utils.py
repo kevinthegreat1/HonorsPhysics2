@@ -1,7 +1,8 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
 
-def compute(acceleration_function, start_time: float = 0, end_time: float = 10, steps: int = 1000, times=None, position_initial: float = 0, velocity_initial: float = 0, acceleration_initial: float = 0):
+def euler_method(acceleration_function: callable, start_time: float = 0, end_time: float = 10, steps: int = 1000, times=None, position_initial: float = 0, velocity_initial: float = 0, acceleration_initial: float = 0):
     if times is None:
         times = np.linspace(start_time, end_time, steps)
     positions = [position_initial]
@@ -12,3 +13,13 @@ def compute(acceleration_function, start_time: float = 0, end_time: float = 10, 
         velocities.append(velocities[-1] + accelerations[-1] * (times[i + 1] - times[i]))
         positions.append(positions[-1] + velocities[-1] * (times[i + 1] - times[i]))
     return times, positions, velocities, accelerations
+
+
+def graph(name: str, units: str, data: list[tuple[any, any, str]]):
+    for times, data, label in data:
+        plt.plot(times, data, label=f"{label} {name}")
+    plt.title(f"{name} vs Time")
+    plt.xlabel('Time (s)')
+    plt.ylabel(f"{name} ({units})")
+    plt.legend()
+    plt.show()
