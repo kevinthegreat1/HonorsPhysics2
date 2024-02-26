@@ -15,12 +15,12 @@ def euler_method(acceleration_function: callable, start_time: float = 0, end_tim
     return times, positions, velocities, accelerations
 
 
-def graph(name: str, units: str, data: list[tuple[any, any, str]], directory: str = None):
+def graph(data: list[tuple[any, any, str]], y_name: str, y_units: str, x_name: str = "Time", x_units: str = "s", name: str = "", directory: str = None):
     for times, data, label in data:
         plt.plot(times, data, label=f"{label}")
-    plt.title(f"{name} vs Time")
-    plt.xlabel('Time (s)')
-    plt.ylabel(f"{name} ({units})")
+    plt.title(f"{y_name} vs {x_name} {name}")
+    plt.xlabel(f"{x_name} ({x_units})")
+    plt.ylabel(f"{y_name} ({y_units})")
     plt.legend()
     if directory is not None:
         plt.savefig(f"{directory}.png", dpi=300)
