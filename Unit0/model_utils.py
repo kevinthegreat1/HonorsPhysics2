@@ -21,7 +21,7 @@ def graph(data: list[tuple[any, any, str]], y_name: str, y_units: str, x_name: s
             plt.plot(times, data, label=f"{label}")
         else:
             plt.plot(times, data, type, label=f"{label}")
-    plt.title(f"{name_prefix} {y_name} vs {x_name} {name_suffix}")
+    plt.title(f"{name_prefix} {y_name} ({y_units}) vs {x_name} ({x_units}) {name_suffix}")
     plt.xlabel(f"{x_name} ({x_units})")
     plt.ylabel(f"{y_name} ({y_units})")
     plt.legend()
