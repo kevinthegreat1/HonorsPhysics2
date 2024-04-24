@@ -21,9 +21,11 @@ def graph(data: list[tuple[any, any, str]], y_name: str, y_units: str, x_name: s
             plt.plot(times, data, label=f"{label}")
         else:
             plt.plot(times, data, type, label=f"{label}")
-    plt.title(f"{name_prefix} {y_name} ({y_units}) vs {x_name} ({x_units}) {name_suffix}")
-    plt.xlabel(f"{x_name} ({x_units})")
-    plt.ylabel(f"{y_name} ({y_units})")
+    x_label = f"{x_name} ({x_units})" if x_units else x_name
+    y_label = f"{y_name} ({y_units})" if y_units else y_name
+    plt.title(f"{name_prefix} {y_label} vs {x_label} {name_suffix}")
+    plt.xlabel(f"{x_label}")
+    plt.ylabel(f"{y_label}")
     plt.legend()
     if directory is not None:
         plt.savefig(f"{directory}.png", dpi=300)
