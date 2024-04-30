@@ -28,5 +28,5 @@ def graph(data: list[tuple[any, any, str]], y_name: str, y_units: str, x_name: s
     plt.ylabel(f"{y_label}")
     plt.legend()
     if directory is not None:
-        plt.savefig(f"{directory}.png", dpi=300)
+        plt.savefig(f"{directory}.png", dpi=300, bbox_inches='tight')
     plt.show()
